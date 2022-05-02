@@ -1,55 +1,64 @@
 package com.example.myfirstapp
 
-import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MyViewModel : ViewModel(){
-    val data = ObservableArrayList<Person>().apply {
-        add(Person("Taro", "taro@yamada", 36))
-        add(Person("Hanako", "hanako@flower", 25))
-        add(Person("Sachiko", "sachiko@happy", 14))
+class MyViewModel : ViewModel() {
+    val data: MutableLiveData<MutableList<Person>> by lazy {
+        MutableLiveData<MutableList<Person>>()
     }
 
-    val person = ObservableField<Person>()
+    val name: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
 
-    var allText = ObservableField<String>()
+    val mail: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
 
-    fun allbyText(): String {
-        var res = ""
-        for (item in data) {
+    val age: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+
+    val allText: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+
+    fun allByText(): String {
+        var res = String()
+        for (item in data.value!!) {
             res += item.to_s()
             res += "\n"
         }
         return res
     }
 
-    fun getById(id:Int):Person = data[id]
+    fun getById(id: Int): Person = data.value!!.get(id)
 
-    fun add(name:String, mail:String, age:Int) {
-        data.add(Person(name, mail, age))
-    }
-    fun add(person:Person) {
-        data.add(person)
+    fun add(nm: String, ml: String, ag: Int) {
+        data.value?.add(Person(nm, ml, ag))
     }
 
     init {
-        allText.set((allbyText()))
-        person.set(Person("", "", 0))
+        data.value = mutableListOf(
+            Person("Taro", "taro@yamada", 36),
+            Person("Hanako", "hanako@flower", 25),
+            Person("Sachiko", "sachiko@happy", 14)
+        )
+        allText.value = allByText()
+        name.value = "name"
+        mail.value = "mail@address"
+        age.value = "0"
     }
 }
 
 
-class Person(name:String, mail:String, age:Int) {
-    var name = ObservableField<String>()
-    var mail = ObservableField<String>()
-    var age = ObservableField<String>()
+class Person(name: String, mail: String, age: Int) {
+    var name: String = name
+    var mail: String = mail
+    var age: Int = age
 
-    init {
-        this.name.set(name)
-        this.mail.set(mail)
-        this.age.set(age.toString())
-    }
+    fun age_s(): String = age.toString()
 
-    fun to_s(): String = "${name.get()} (${mail.get()}, ${age.get()})"
+    fun to_s(): Any? = "$name ($mail, $age)"
 }

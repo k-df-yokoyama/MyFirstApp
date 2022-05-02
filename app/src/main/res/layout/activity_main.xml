@@ -2,23 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="viewmodel"
-            type="com.example.myfirstapp.MyViewModel" />
-        <variable
-            name="person"
-            type="com.example.myfirstapp.Person" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/text1"
-            android:text="@{viewmodel.allText}"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -32,7 +22,7 @@
         <EditText
             android:id="@+id/frm_name"
             android:inputType="text"
-            android:text="@{person.name}"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -45,7 +35,7 @@
         <EditText
             android:id="@+id/frm_mail"
             android:inputType="textEmailAddress"
-            android:text="@{person.mail}"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -58,7 +48,7 @@
         <EditText
             android:id="@+id/frm_age"
             android:inputType="text|number"
-            android:text="@{person.age}"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
