@@ -18,16 +18,18 @@ class MainActivity : AppCompatActivity() {
 
         val myViewModel: MyViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
         binding.viewmodel = myViewModel
-        binding.text1.text = myViewModel.allText
+        binding.person = myViewModel.person.get()
 
         button1.setOnClickListener {
-            val nm = binding.frmName.text
-            val ml = binding.frmMail.text
-            val ag = binding.frmAge.text
-            myViewModel.add(nm.toString(), ml.toString(), ag.toString().toInt())
-            myViewModel.person = Person(nm.toString(), ml.toString(), ag.toString().toInt())
-            myViewModel.allText = myViewModel.allByText()
-            binding.text1.text = myViewModel.allText
+            myViewModel.add(
+                frm_name.text.toString(),
+                frm_mail.text.toString(),
+                frm_age.text.toString().toInt()
+            )
+            myViewModel.person!!.get()!!.name.set("name")
+            myViewModel.person!!.get()!!.mail.set("mail@address")
+            myViewModel.person!!.get()!!.age.set("0")
+            myViewModel.allText.set(myViewModel.allbyText())
         }
     }
 }

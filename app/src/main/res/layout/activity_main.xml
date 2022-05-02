@@ -7,6 +7,9 @@
         <variable
             name="viewmodel"
             type="com.example.myfirstapp.MyViewModel" />
+        <variable
+            name="person"
+            type="com.example.myfirstapp.Person" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
@@ -29,7 +32,7 @@
         <EditText
             android:id="@+id/frm_name"
             android:inputType="text"
-            android:text="@{viewmodel.person.name}"
+            android:text="@{person.name}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -42,7 +45,7 @@
         <EditText
             android:id="@+id/frm_mail"
             android:inputType="textEmailAddress"
-            android:text="@{viewmodel.person.mail}"
+            android:text="@{person.mail}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
@@ -55,7 +58,7 @@
         <EditText
             android:id="@+id/frm_age"
             android:inputType="text|number"
-            android:text="@{viewmodel.person.age_s}"
+            android:text="@{person.age}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
