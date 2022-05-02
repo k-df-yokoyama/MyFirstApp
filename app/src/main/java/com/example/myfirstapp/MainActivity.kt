@@ -6,27 +6,31 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private val data:MutableList<Person> = mutableListOf(
+        Person("Taro", "taro@yamada", 36),
+        Person("Hanako", "hanako@flower", 25),
+        Person("Sachiko", "sachiko@happy", 14)
+    )
+
+    fun to_s(ob:Person): Any? = "$ob.name ($ob.mail, $ob.age)"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val myViewModel:MyViewModel = ViewModelProvider(this)
-            .get(MyViewModel::class.java)
         setContentView(R.layout.activity_main)
 
 
-        text1.text = updateData(myViewModel)
+        text1.text = updateData()
         button1.setOnClickListener {
             val nm =frm_name.text
             val ml = frm_mail.text
             val ag = frm_age.text
-            myViewModel.add(nm.toString(), ml.toString(), ag.toString().toInt())
-            text1.text = updateData(myViewModel)
+            data.add(Person(nm.toString(), ml.toString(), ag.toString().toInt()))
+            text1.text = updateData()
         }
     }
 
 
-    fun updateData(vm:MyViewModel):String {
-        val data = vm.getAll()
+    fun updateData():String {
         var people = ""
         for(item in data) {
             people += item.to_s()
