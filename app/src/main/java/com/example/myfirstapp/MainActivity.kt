@@ -15,7 +15,13 @@ class MainActivity : AppCompatActivity() {
 
 
         text1.text = updateData(myViewModel)
-        button1.setOnClickListener {}
+        button1.setOnClickListener {
+            val nm =frm_name.text
+            val ml = frm_mail.text
+            val ag = frm_age.text
+            myViewModel.add(nm.toString(), ml.toString(), ag.toString().toInt())
+            text1.text = updateData(myViewModel)
+        }
     }
 
 
